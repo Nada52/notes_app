@@ -8,12 +8,16 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // يعني متغيرش من حجم الشاشة علشان تناسب الكيبورد
+      // resizeToAvoidBottomInset: false,
       body: const NotesViewBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
-            builder: (context) => const CustomAddNoteBottomSheet(),);
+            builder: (context) => const CustomAddNoteBottomSheet(),
+          );
         },
         backgroundColor: Colors.tealAccent,
         shape: const CircleBorder(),
