@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hint,  this.maxLines = 1, this.onSaved});
+  const CustomTextField(
+      {super.key, required this.hint, this.maxLines = 1, this.onSaved, this.onChanged});
 
   final String hint;
   final int maxLines;
   final void Function(String?)? onSaved;
+  final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onSaved: onSaved,
+      onChanged: onChanged,
       validator: (value) {
-        if(value?.isEmpty ?? true){
+        if (value?.isEmpty ?? true) {
           return 'field is required';
-        }else{
+        } else {
           return null;
         }
       },
@@ -28,12 +31,11 @@ class CustomTextField extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder buildBorder({color}){
-    return  OutlineInputBorder(
+  OutlineInputBorder buildBorder({color}) {
+    return OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
           color: color ?? Colors.white,
-        )
-    );
+        ));
   }
 }
